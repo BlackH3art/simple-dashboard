@@ -19,3 +19,10 @@ export interface CartDeletedInterface extends CartInterface {
   isDeleted: boolean;
   deletedOn: string;
 }
+
+export interface CartsResponseInterface {
+  carts: CartInterface[];
+  total: number;
+  skip: number;
+  limit: number;
+}
