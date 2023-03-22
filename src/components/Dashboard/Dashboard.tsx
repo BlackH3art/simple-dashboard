@@ -35,6 +35,10 @@ export const Dashboard: FC = () => {
             <CartRow
               key={idx}
               userId={item.userId}
+              productsAmount={item.totalProducts}
+              totalQuantity={item.totalQuantity}
+              total={item.total}
+              discountedTotal={item.discountedTotal}
             />
           ))}
         </div>
