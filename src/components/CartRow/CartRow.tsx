@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
+import { MdDeleteOutline } from 'react-icons/md';
 import { StatContainer } from "./StatContainer";
 
 interface Props {
@@ -9,19 +10,26 @@ interface Props {
   discountedTotal: number;
   toggleSelected: () => void;
   selected: boolean;
+  handleDeleteCart: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const CartRow: FC<Props> = ({ userId, productsAmount, totalQuantity, total, discountedTotal, toggleSelected, selected }) => {
+export const CartRow: FC<Props> = ({ userId, productsAmount, totalQuantity, total, discountedTotal, toggleSelected, selected, handleDeleteCart }) => {
 
   return (
     <div 
-      className={`w-full rounded-xl border-[1px] my-1 ${selected ? "border-gray-700" : "border-gray-300"}`} 
+      className={`w-full rounded-xl border-[1px] my-1 hover:cursor-pointer ${selected ? "border-gray-700" : "border-gray-300"}`} 
       onClick={toggleSelected}
     >
-      <div className="w-full h-16 flex items-center">
-        <h2 className="pl-8">
+      <div className="w-full h-16 flex items-center justify-between px-8">
+        <h2 className="">
           User #{userId} cart
         </h2>
+
+        {selected ? (
+          <button className="p-2 hover:text-red-500 duration-200" onClick={handleDeleteCart}>
+            <MdDeleteOutline size={22} />
+          </button>
+        ) : null}
       </div>
 
       {selected ? (

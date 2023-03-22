@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
-import { getAllCarts } from "../../api";
+import { FC, MouseEvent, useEffect, useState } from "react";
+import { getAllCarts, deleteCart } from "../../api";
 import { CartInterface } from "../../interfaces/CartInterface";
 import { CartRow } from "../CartRow/CartRow";
 
@@ -11,6 +11,20 @@ export const Dashboard: FC = () => {
   const toggleSelected = (id: number) => {
     if(selectedId === id) return setSelectedId(null);
     setSelectedId(id);
+  }
+
+
+  const deleteAndRemoveCart = async (id: number) => {
+    try {
+      const res = await deleteCart(id);
+      if(res.status === 200) {
+        const filtered = carts.filter(item => item.id !== id);
+        setCarts(filtered);
+      }
+      
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
@@ -47,6 +61,10 @@ export const Dashboard: FC = () => {
               discountedTotal={item.discountedTotal}
               toggleSelected={() => toggleSelected(item.id)}
               selected={item.id === selectedId}
+              handleDeleteCart={(e: MouseEvent<HTMLButtonElement>) => { 
+                e.stopPropagation();
+                deleteAndRemoveCart(item.id)
+              }}
             />
           ))}
         </div>
