@@ -6,6 +6,12 @@ import { CartRow } from "../CartRow/CartRow";
 export const Dashboard: FC = () => {
 
   const [carts, setCarts] = useState<CartInterface[]>([]);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  const toggleSelected = (id: number) => {
+    if(selectedId === id) return setSelectedId(null);
+    setSelectedId(id);
+  }
 
   useEffect(() => {
     getCartsData();
@@ -39,6 +45,8 @@ export const Dashboard: FC = () => {
               totalQuantity={item.totalQuantity}
               total={item.total}
               discountedTotal={item.discountedTotal}
+              toggleSelected={() => toggleSelected(item.id)}
+              selected={item.id === selectedId}
             />
           ))}
         </div>
