@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { PrimaryButton } from '../_Reusable/PrimaryButton/PrimaryButton';
 
 export const Navigation: FC = () => {
 
@@ -10,11 +9,6 @@ export const Navigation: FC = () => {
         <h2 className='text-2xl text-white'>
           Simple Dashboard
         </h2>
-
-        <PrimaryButton 
-          text='Go to dashboard' 
-          classes='bg-blue-500 hover:bg-blue-400 duration-200 font-semibold' 
-        />
 
       </div>
     </nav>

@@ -1,3 +1,4 @@
+import { Dashboard } from './components/Dashboard/Dashboard';
 import { Navigation } from "./components/Navigation/Navigation";
 
 function App() {
@@ -6,6 +7,8 @@ function App() {
     <div className="w-full">
 
       <Navigation />
+
+      <Dashboard />
       
     </div>
   )
