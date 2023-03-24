@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, FC, FormEvent, FormEventHandler, useContext, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, FC, FormEvent, FormEventHandler, useContext, useState, MouseEventHandler } from "react";
 import { addCart } from "../../api";
 import { AppContext } from "../../context/AppContext";
 import { CartToAddInterface } from "../../interfaces/CartInterface";
@@ -16,10 +16,13 @@ export const AddCart: FC = () => {
     id: 0,
     quantity: 0
   });
+  const [error, setError] = useState<string>("");
 
   const { setAddCartModal } = useContext(AppContext);
 
   const handleChangeCartData: ChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setError("");
+
     setCartData({
       ...cartData,
       [e.target.name]: e.target.value
@@ -27,14 +30,32 @@ export const AddCart: FC = () => {
   }
 
   const handleChangeProductData: ChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setError("");
+    
     setProductData({
       ...productData,
       [e.target.name]: e.target.value
     })
   }
 
+  const handleAddProduct = (): void => {
+
+    if(Number(productData.id) === 0 || Number(productData.quantity) === 0) {
+      return setError("Incorrect product info");
+    }
+    
+    setCartData(prev => ({ 
+      ...prev, 
+      products: [...prev.products].concat([{ id: productData.id, quantity: productData.quantity }])
+    }));
+  }
+
   const handleSubmit: FormEventHandler = async (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
+
+    if(Number(cartData.userId) === 0 || cartData.products.length === 0) {
+      return setError("User ID is incorrect or cart is empty");
+    }
     
     try {
       const res = await addCart(cartData);
@@ -51,6 +72,12 @@ export const AddCart: FC = () => {
       <h2 className="text-lg py-4 font-bold">
         Add cart
       </h2>
+
+      {error ? (
+        <p className="text-sm text-red-400">
+          {error}
+        </p>
+      ) : null}
 
       <div className="w-full px-5">
         <form className="">
@@ -82,10 +109,7 @@ export const AddCart: FC = () => {
           <PrimaryButton 
             text="Add product"
             classes="bg-gray-800 self-end ml-auto"
-            handler={() => setCartData(prev => ({ 
-              ...prev, 
-              products: [...prev.products].concat([{ id: productData.id, quantity: productData.quantity }])
-            }))}
+            handler={handleAddProduct}
           />
         </div>
 
