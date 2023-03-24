@@ -1,7 +1,7 @@
 import { FC, MouseEvent } from "react";
 import { MdDeleteOutline } from 'react-icons/md';
 import { ProductInterface } from "../../interfaces/ProductInterface";
-import { Chart } from "../Chart/CHart";
+import { Chart } from "../Chart/Chart";
 import { StatContainer } from "./StatContainer";
 
 interface Props {
