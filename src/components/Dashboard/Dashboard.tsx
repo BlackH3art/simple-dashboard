@@ -77,6 +77,7 @@ export const Dashboard: FC = () => {
                 e.stopPropagation();
                 deleteAndRemoveCart(item.id)
               }}
+              products={item.products}
             />
           ))}
         </div>

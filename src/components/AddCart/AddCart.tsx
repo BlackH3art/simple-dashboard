@@ -46,7 +46,7 @@ export const AddCart: FC = () => {
   }
 
   return (
-    <div className="fixed flex flex-col items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 bg-white border-[1px] border-gray-400 rounded-lg">
+    <div className="fixed flex flex-col items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white border-[1px] border-gray-400 rounded-lg">
 
       <h2 className="text-lg py-4 font-bold">
         Add cart
