@@ -4,9 +4,10 @@ interface Props {
   label: string;
   name: string;
   handler: ChangeEventHandler;
+  value: number;
 }
 
-export const NumberInput: FC<Props> = ({ label, name, handler }) => {
+export const NumberInput: FC<Props> = ({ label, name, handler, value }) => {
 
   return (
     <label className="flex justify-between items-center py-2">
@@ -16,6 +17,7 @@ export const NumberInput: FC<Props> = ({ label, name, handler }) => {
         type="number" 
         name={name}
         onChange={handler}
+        value={value}
       />
     </label>
   )
