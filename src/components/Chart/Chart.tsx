@@ -42,8 +42,6 @@ interface Props {
 
 export const Chart: FC<Props> = ({ products }) => {
   
-  
-  
   const data = {
     labels: products.map(item => item.title),
     datasets: [

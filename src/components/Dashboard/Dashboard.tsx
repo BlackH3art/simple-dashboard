@@ -73,11 +73,11 @@ export const Dashboard: FC = () => {
               discountedTotal={item.discountedTotal}
               toggleSelected={() => toggleSelected(item.id)}
               selected={item.id === selectedId}
+              products={item.products}
               handleDeleteCart={(e: MouseEvent<HTMLButtonElement>) => { 
                 e.stopPropagation();
                 deleteAndRemoveCart(item.id)
               }}
-              products={item.products}
             />
           ))}
         </div>

@@ -18,8 +18,6 @@ interface Props {
 
 export const CartRow: FC<Props> = ({ userId, productsAmount, totalQuantity, total, discountedTotal, toggleSelected, selected, handleDeleteCart, products }) => {
 
-  console.log(products);
-  
   return (
     <div 
       className={`w-full rounded-xl border-[1px] my-1 hover:cursor-pointer ${selected ? "border-gray-700" : "border-gray-300"}`} 
